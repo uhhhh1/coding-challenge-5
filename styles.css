@@ -1,0 +1,13 @@
+.header-box{
+    margin-top:30px;
+    margin-left:600px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-content:center;
+    width:350px;
+    height:630px;
+    background-color:rgb(173, 173, 173);
+    border-radius: 20px;
+
+}
