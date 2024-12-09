@@ -1,4 +1,4 @@
-let reminders = []; // Array to store reminders
+let reminders = [];
 let currentIndex = 0;
 
 let reminderAmount = document.querySelector('.reminder-container')
@@ -10,41 +10,41 @@ const textField = document.querySelector('#reminder-text')
 const output = document.querySelector('.inner-box')
 
 
-
-
-function updateReminderDisplay() {
-    if (reminders.value === 0) {
-        reminderAmount.textContent = [currentIndex];
-    } else {
-        reminderAmount.textContent = [currentIndex];
-    }
-}
-
 backwards.addEventListener('click', () => {
     if (currentIndex > 0) {
         currentIndex--;
-        reminders.value--;
-        updateReminderDisplay();
+        reminderAmount.textContent = currentIndex;
+        output.innerHTML = '';
+        reminders.forEach(r => {
+            if (r.currentIndex === currentIndex) {
+                let newReminder = document.createElement("p");
+                newReminder.textContent = r.text;
+                output.appendChild(newReminder);
+            }
+        });
     }
 });
 
 forward.addEventListener('click', () => {
-        currentIndex++;
-        reminders.value++;
-        updateReminderDisplay();
+    currentIndex++;
+    reminderAmount.textContent = currentIndex;
+    output.innerHTML = '';
+    reminders.forEach(r => {
+        if (r.currentIndex === currentIndex) {
+            let newReminder = document.createElement("p");
+            newReminder.textContent = r.text;
+            output.appendChild(newReminder);
+        }
+    });
 });
 
 
 
 button.addEventListener('click', () => {
-    const userInput = textField.value.trim(); 
-
-    if (userInput) {
-        output.textContent = userInput;
-        textField.value = '';
-        reminders.push(userInput);
-        currentIndex = reminders.length - 1;
-        currentIndex++;
-    }
-    updateReminderDisplay();
- });
+    let reminderText = textField.value;
+    reminders.push({currentIndex: currentIndex, text: reminderText });
+    let newReminder = document.createElement("p");
+    newReminder.textContent = reminderText;
+    output.appendChild(newReminder);
+    textField.value = '';
+});
